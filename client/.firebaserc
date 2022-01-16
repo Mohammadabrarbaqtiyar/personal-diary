@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "virtual-diary-338407": {
+      "hosting": {
+        "personal-diary-FE": [
+          "virtual-diary-338407"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "virtual-diary-338407"
+  }
+}
