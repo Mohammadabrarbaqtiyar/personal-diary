@@ -7,14 +7,30 @@ import firebase from 'firebase';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private angularFs: AngularFireAuth) {}
+  constructor(private angularFs: AngularFireAuth) {
+    
+  }
 
   public signInWithGoogle() {
-    return from(this.angularFs.signInWithPopup(new firebase.auth.GoogleAuthProvider()));
+    return from(this.angularFs.signInWithPopup(new firebase.auth.GoogleAuthProvider()))
+    
   }
 
   public signOut() {
     return from(this.angularFs.signOut());
+  }
+
+  GetToken(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.angularFs.onAuthStateChanged( user => {
+        if (user) {
+          user.getIdToken().then(idToken => {
+            // this.userToken = idToken;            
+            resolve(idToken);    
+          });
+        }
+      });
+    })
   }
 
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -22,8 +24,11 @@ export class AppComponent implements OnInit{
 
   signInWithGoogle(){
     this.authService.signInWithGoogle().subscribe(res=>{
-      console.log(res);
-      
+      console.log('user',res);
+        this.authService.GetToken().then(res=>{
+          console.log('tokenn', res);
+          
+        })
     }, err=>{
       console.log(err);
       
